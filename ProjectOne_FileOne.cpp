@@ -1,13 +1,10 @@
 #include <iostream>;
-#include <stdlib.h>;
-#include <stdio.h>;
 
 //Global Bool Handlers
 bool gameIsRunning = true;
 bool playerTurn = true;
 
-//Fighter Stats Struct
-
+//Fighter Stats
 const int maxHealth = 30;
 int currentHealth = 30;
 char playerState = 'a';
@@ -23,6 +20,7 @@ int Heal();
 
 int main() {
 	bool winState;
+
 	//Game Loop
 	while (gameIsRunning) {
 		if (playerTurn) {
@@ -59,11 +57,12 @@ int main() {
 		
 }
 
+//Function declarations:
+
 int Heal() {
 	int healAmount = rand() % 5 + 1;
 	return healAmount;
 }
-
 
 void PlayerActionSelector() {
 	int atkDmg = rand() % 7 + 1;
