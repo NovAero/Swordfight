@@ -127,17 +127,17 @@ const char& String::operator[](const size_t index) const
 	return data[index];
 }
 
-ostream& strio::operator<<(ostream& out, const String output)
-{
-	out << output;
-	return out;
-}
-
-istream& strio::operator>>(istream& in, const String input)
-{
-	in >> input;
-	return in;
-}
+//ostream& strio::operator<<(ostream& out, const String output)
+//{
+//	out << output;
+//	return out;
+//}
+//
+//istream& strio::operator>>(istream& in, const String input)
+//{
+//	in >> input;
+//	return in;
+//}
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -415,10 +415,8 @@ String& String::Replace(const String& find, const String& replace, bool replaceA
 		if (Find(find) != SIZE_T_MAX) { //Checks if the substring find exists in next instance
 			Replace(find, replace, true); //Recursive Replace();
 		}
-		else {
-			return *this;
-		}
 	}
+	return *this;
 }
 
 String& String::Input()

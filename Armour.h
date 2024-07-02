@@ -6,18 +6,17 @@ class Armour
 public:
 
 	Armour();
-	Armour(String& name, int ac);
+	Armour(const char* name, int ac);
 
 	~Armour();
 
 public:
 
-	const int GetAC();
+	const int GetAC() const;
 
 private:
 	
 	String name;
-	int armorClass;
+	int armorClass; //How much dmg the armor removes during calculations
 
 };
-

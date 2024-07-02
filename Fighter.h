@@ -5,33 +5,38 @@
 
 class Fighter
 {
-
-
-	Fighter(String& name, Weapon& weapon, Armour& armor);
+	Fighter();
+	Fighter(char* name, Weapon& weapon, Armour& armour);
 
 	~Fighter();
 
-
 public:
 	
-	void Attack(Fighter& target, Weapon& weapon);
+	void Attack(Fighter& target);
+	void Defend();	
+	void Heal();
 
-	void Defend(Armour&, int baseDefence);	
+	void TakeDamage(int dmg);
 
-	void HealSelf(int healClamp, int multiplier);
-	
+	String& SetName(const char* name);
+
+public:
 
 
 private:
 
 	String fighterName;
-	char state;
-	
+	Weapon weapon;
+	Armour armour;
+
 	int maxHealth;
 	int currentHealth;
 
+	int healAmount;
+
+	bool isDefending;
+	
 	int baseAtk;
-	int baseDf;
+	int baseDef;
 
 };
-

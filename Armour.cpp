@@ -6,7 +6,7 @@ Armour::Armour()
 	armorClass = 0;
 }
 
-Armour::Armour(String& name, int ac)
+Armour::Armour(const char* name, int ac)
 {
 	this->name = name;
 	armorClass = ac;
@@ -14,14 +14,12 @@ Armour::Armour(String& name, int ac)
 
 Armour::~Armour()
 {
-	
 	delete this;
-
 }
 
 // Function //
 
-const int Armour::GetAC()
+const int Armour::GetAC() const
 {
 	return armorClass;
 }

@@ -4,27 +4,68 @@
 
 //Constructor / Deconstructor //
 
-Fighter::Fighter(String& name, Weapon& weapon, Armour& armour) {
+Fighter::Fighter() {
 
-	maxHealth = 1;
+	fighterName = "Empty";
+	maxHealth == 0;
+	currentHealth = 0;
+	healAmount - 0;
+	baseAtk = 0;
+	baseDef - 0;
+}
+
+Fighter::Fighter(char* name, Weapon& weapon, Armour& armour) {
+
+	maxHealth = 30;
 	currentHealth = maxHealth;
 
-	fighterName = name.GetData();
+	SetName(name);
+	
+	this->weapon = weapon;
+	this->armour = armour;
+	
+
 }
 
 Fighter::~Fighter() {
 
-	delete this;
+	delete &fighterName;
+	delete &weapon;
+	delete &armour;
 	
 }
 
-
-
-
 // Functions //
 
-void Fighter::Heal(int healClamp)
+void Fighter::Attack(Fighter& target)
+{
+	isDefending = false;
+
+	if (target.isDefending == true) {
+		system("CLS");
+		std::cout << "The enemy's shield blocks your attack\n";
+		return;
+	}
+
+
+}
+
+void Fighter::Defend()
 {
 
 }
 
+void Fighter::Heal()
+{
+
+}
+
+void Fighter::TakeDamage(int dmg)
+{
+}
+
+String& Fighter::SetName(const char* name)
+{
+	fighterName.SetData(name);
+	return fighterName;
+}

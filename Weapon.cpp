@@ -2,61 +2,25 @@
 
 // Constructors / Deconstructors
 
-Weapon::Weapon(const String& wpnName,int weaponType)
+Weapon::Weapon()
 {
-	weaponName = wpnName; 
+	weaponName = "Empty";
+	weaponType = -1;
+	minDmg = 0;
+	maxDmg = 0;
 
-	switch (weaponType)
-	{
-	case 0: //Dagger || Low base dmg, very high crit, very large multiplier
+	critChance = 0; 
+	critMultiplier = 0.0f;
+}
 
-		dmgRange[0] = 1;
-		dmgRange[1] = 5;
-		critChance = 33;
-		critMultiplier = 3.5f;
-		break;
+Weapon::Weapon(char* wpnName,int weaponType)
+{
+	SetData(wpnName, weaponType);
+}
 
-	case 1: //Shortsword || Average base dmg, higher crit, normal crit multipler
-
-		dmgRange[0] = 3;
-		dmgRange[1] = 6;
-		critChance = 20;
-		critMultiplier = 2.5f;
-		break;
-
-	case 2: //Longsword || Higher base dmg, lower crit and multiplier
-
-		dmgRange[0] = 6;
-		dmgRange[1] = 12;
-		critChance = 10;
-		critMultiplier = 1.5f;
-		break;
-
-	case 3: //Axe || Medium base dmg, higher crit chance, regular multiplier
-
-		dmgRange[0] = 4;
-		dmgRange[1] = 8;
-		critChance = 10;
-		critMultiplier = 2.0f;
-		break;
-
-	case 4: //Mace || very high base dmg, super low crit and multiplier
-
-		dmgRange[0] = 8;
-		dmgRange[1] = 16;
-		critChance = 5;
-		critMultiplier = 1.25f;
-		break;
-
-	default: //Default if case num isnt remembered when spawning weapon
-
-		dmgRange[0] = 2;
-		dmgRange[1] = 6;
-		critChance = 20;
-		critMultiplier = 2.0f;
-		break;
-	}
-
+Weapon::Weapon(Weapon& copy)
+{
+	SetData(copy, copy.weaponType);
 }
 
 Weapon::~Weapon()
@@ -64,20 +28,160 @@ Weapon::~Weapon()
 	delete this;
 }
 
+
+
+
+
 // Functions //
 
-int* Weapon::GetDmgRange(Weapon& weapon)
+Weapon& Weapon::SetData(const char* name, int wpnType)
 {
-	return dmgRange;
+	weaponName.SetData(name);
+
+	switch (wpnType)
+	{
+	case 0: //Dagger || Low base dmg, very high crit, very large multiplier
+
+		minDmg = 1;
+		maxDmg = 5;
+		critChance = 33;
+		critMultiplier = 3.5f;
+		return *this;
+		break;
+
+	case 1: //Shortsword || Average base dmg, higher crit, normal crit multipler
+
+		minDmg = 3;
+		maxDmg = 6;
+		critChance = 20;
+		critMultiplier = 2.5f;
+		return *this;
+		break;
+
+	case 2: //Longsword || Higher base dmg, lower crit and multiplier
+
+		minDmg = 6;
+		maxDmg = 12;
+		critChance = 10;
+		critMultiplier = 1.5f;
+		return *this;
+		break;
+
+	case 3: //Axe || Medium base dmg, higher crit chance, regular multiplier
+
+		minDmg = 4;
+		maxDmg = 8;
+		critChance = 10;
+		critMultiplier = 2.0f;
+		return *this;
+		break;
+
+	case 4: //Mace || very high base dmg, super low crit and multiplier
+
+		minDmg = 8;
+		maxDmg = 16;
+		critChance = 5;
+		critMultiplier = 1.25f;
+		return *this;
+		break;
+
+	default: //Default if case num isnt remembered when spawning weapon
+
+		minDmg = 2;
+		maxDmg = 6;
+		critChance = 20;
+		critMultiplier = 2.0f;
+		return *this;
+		break;
+	}
 }
-int Weapon::GetCritChance(Weapon& weapon)
+
+Weapon& Weapon::SetData(Weapon& copy, int wpnType)
+{
+	weaponName = copy.GetName();
+
+	weaponType = wpnType;
+
+	switch (weaponType)
+	{
+	case 0: //Dagger || Low base dmg, very high crit, very large multiplier
+
+		minDmg = 1;
+		maxDmg = 5;
+		critChance = 33;
+		critMultiplier = 3.5f;
+		return *this;
+		break;
+
+	case 1: //Shortsword || Average base dmg, higher crit, normal crit multipler
+
+		minDmg = 3;
+		maxDmg = 6;
+		critChance = 20;
+		critMultiplier = 2.5f;
+		return *this;
+		break;
+
+	case 2: //Longsword || Higher base dmg, lower crit and multiplier
+
+		minDmg = 6;
+		maxDmg = 12;
+		critChance = 10;
+		critMultiplier = 1.5f;
+		return *this;
+		break;
+
+	case 3: //Axe || Medium base dmg, higher crit chance, regular multiplier
+
+		minDmg = 4;
+		maxDmg = 8;
+		critChance = 10;
+		critMultiplier = 2.0f;
+		return *this;
+		break;
+
+	case 4: //Mace || very high base dmg, super low crit and multiplier
+
+		minDmg = 8;
+		maxDmg = 16;
+		critChance = 5;
+		critMultiplier = 1.25f;
+		return *this;
+		break;
+
+	default: //Default if case num isnt remembered when spawning weapon
+
+		minDmg = 2;
+		maxDmg = 6;
+		critChance = 20;
+		critMultiplier = 2.0f;
+		return *this;
+		break;
+	}
+}
+
+String& Weapon::GetName()
+{
+	return weaponName;
+}
+
+int Weapon::GetMinDmg() const
+{
+	return minDmg;
+}
+
+int Weapon::GetMaxDmg() const
+{
+	return maxDmg;
+}
+
+
+int Weapon::GetCritChance() const
 {
 	return critChance;
 }
 
-int Weapon::GetCritXplier(Weapon& weapon)
+float Weapon::GetCritXplier() const
 {
 	return critMultiplier;
 }
-
-
