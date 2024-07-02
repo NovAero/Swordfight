@@ -20,7 +20,7 @@ int Heal();
 
 
 int main() {
-	bool winState;
+	bool winState = false;
 
 	//Game Loop
 	while (gameIsRunning) {
@@ -47,11 +47,11 @@ int main() {
 			}
 		}
 	}
-	if (winState) {
+	if (!winState) {
 		std::cout << "You Win!\n";
 		system("pause");
 	}
-	else if (!winState) {
+	else if (winState) {
 		std::cout << "You Died\n";
 		system("pause");
 	}
