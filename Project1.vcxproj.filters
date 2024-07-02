@@ -18,5 +18,13 @@
     <ClCompile Include="ProjectOne_FileOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fighter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Fighter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
